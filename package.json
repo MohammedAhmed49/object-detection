@@ -4,14 +4,26 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@tensorflow-models/coco-ssd": "^2.0.3",
+    "@tensorflow-models/mobilenet": "^2.0.4",
+    "@tensorflow/tfjs": "^1.7.4",
+    "@tensorflow/tfjs-converter": "^1.2.5",
+    "@tensorflow/tfjs-core": "^1.2.11",
+    "@tensorflow/tfjs-node": "^1.2.11",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "jpeg-js": "^0.4.0",
     "mongoose": "^5.9.3",
-    "multer": "^1.4.2"
+    "multer": "^1.4.2",
+    "node-pre-gyp": "^0.14.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
   }
 }

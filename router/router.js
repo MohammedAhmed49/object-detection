@@ -2,9 +2,9 @@ const express = require('express');
 const VideoUpload = require('../configs/Uploads')
 const DataBase = require('../models/Database')
 const {model,anything} = require('../configs/objectDetection')
-
+const {extractFrames,VideoLen} = require('../configs/extractFrames')
+const {readImage,readVideo}  = require('../configs/ReadImage')
 const url = require('url')
-const readImage  = require('../configs/ReadImage')
 const router = express();
 
 
@@ -21,9 +21,9 @@ router.post('/',VideoUpload,(req,res)=>{
     console.log('Video Name : ' ,req.files)
     let obj = {
     }
+    let imageExist = false
     if (req.files.imageUp !== undefined){
-        // const prediction = (await model).detect(req.body.imageUp)
-        // console.log(prediction)
+        imageExist = true
          obj = {
             VideoName:req.files.VideoUp[0].filename,
             ImageName:req.files.imageUp[0].filename
@@ -39,13 +39,27 @@ router.post('/',VideoUpload,(req,res)=>{
     let ID = -1 
     DataBase.create(obj).then((doc)=>{
         console.log(doc)
-        return res.redirect(url.format({
-            pathname:'/result',
-            query:{
-                id: doc._id.toString(),
-            }
-    
-        }))
+        if (imageExist){
+            return res.redirect(url.format({
+                pathname:'/result',
+                query:{
+                    id: doc._id.toString(),
+                    image : true
+                }
+                
+            }))
+        }
+        else {
+            return res.redirect(url.format({
+                pathname:'/result',
+                query:{
+                    id: doc._id.toString(),
+                    image : false
+                }
+                
+            }))
+        }
+   
     }).catch((err)=>{
         console.log(err)
         return res.redirect(url.format({
@@ -61,21 +75,42 @@ router.post('/',VideoUpload,(req,res)=>{
 })
 
 
-router.get('/result',(req,res)=>{
-    res.send({'Result':'nothing'})
-    const ActualModel =  model
-    let path = __dirname 
-    path = path.replace('router','VidUploads')
-    const ImageName = path + '/imageUp-1589491328827.jpg'
-    const VideoName = path + '/VideoUp-1589490877429.mp4'
-    const Cocopath = 'model/mobilenet_v2/model.json';
-    const image = readImage(ImageName)
-    const Video = readVideo(VideoName)
-    console.log("end")
-    const output =  anything(image)
-    console.log(output)
-    // const input = imageToInput(image)
-    // model(Cocopath,image)
+router.get('/result',async(req,res)=>{
+    console.log(req.query)
+    if (req.query.id==0){
+        res.redirect('/')
+    }
+    else {
+        
+        DataBase.findById(req.query.id , async(err,doc)=>{
+            if (!err){
+                console.log("Document " ,doc)
+                if (req.query.image){
+                        let path = __dirname 
+                        path = path.replace('router','VidUploads')
+                        path = path + '/'+doc.ImageName
+                        
+                        const image = readImage(path)
+                        path = path.replace(doc.ImageName , doc.VideoName)
+
+                        const FramesExtracted = await extractFrames(path,req.query.id)
+                       
+                        console.log(FramesExtracted)
+                }
+            
+            }
+        })
+        res.send(req.query)
+    }
+    // let path = __dirname 
+    // path = path.replace('router','VidUploads')
+
+    // const ImageName = path + '/imageUp-1589491328827.jpg'
+    // const VideoName = path + '/VideoUp-1589490877429.mp4'
+ 
+    // const image = readImage(ImageName)
+    // const output =  anything(image)
+
      
 })
 module.exports = router;

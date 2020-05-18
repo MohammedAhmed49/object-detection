@@ -14,7 +14,8 @@ const readImage = (path)=>{
 
 const readVideo = (path)=>{
   const buffer = fs.readFileSync(path)
-  pixels = tf.node.decodeImage(new Uint8Array , 4)
+  pixels = tf.node.decodeImage(new Uint8Array(buffer) , 3)
+  tf.node.
   console.log(pixels)
   return pixels
 }
@@ -23,4 +24,4 @@ const readVideo = (path)=>{
 // const image = readImage(ImageName)
 // const input = imageToInput(image,3)
 
-module.exports = readImage
+module.exports = {readImage,readVideo}

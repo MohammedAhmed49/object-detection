@@ -26,8 +26,8 @@ const EF =async(path,id)=>{
     if (!fs.existsSync('./Frames')){
         fs.mkdirSync('./Frames')
     }
-    
-     await extractFrames({
+    console.log("Frame Extraction Started")
+    await extractFrames({
         input:path,
         output:`./Frames/${id.toString()}/%i.jpg`,
         offsets:[

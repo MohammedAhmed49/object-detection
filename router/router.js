@@ -5,10 +5,12 @@ const model = require('../configs/objectDetection').model
 const {extractFrames,VideoLen} = require('../configs/extractFrames')
 const {readImage,readVideo}  = require('../configs/ReadImage')
 const Detect = require('../configs/DetectObjectsInVideo')
+const FilterPredictions = require('../functions/FilterPredictions')
 const url = require('url')
 const router = express();
 
-
+router.set('views')
+router.set('view engine', 'ejs');
 
 router.get('/',(req,res)=>{
 
@@ -82,11 +84,12 @@ router.post('/',VideoUpload,async(req,res)=>{
 
 router.get('/result',async(req,res)=>{
     console.log(req.query)
+
     if (req.query.id==0){
-        res.redirect('/')
+        return res.redirect('/')
     }
     else {
-
+        res.render('animation')
         DataBase.findById(req.query.id , async(err,doc)=>{
             if (!err){
                 console.log("Document " ,doc)
@@ -113,15 +116,22 @@ router.get('/result',async(req,res)=>{
                             path = path + '/'+req.query.id.toString()
                             const predictions = await Detect(path) 
                             console.log(predictions)
+                            const newPredictions = FilterPredictions(predictions,objects)
+                            console.log(newPredictions)
+                           
                         }
                        
                         //console.log("Extracted frames",FramesExtracted)
                 }
-            
+               
             }
         })
-        res.send(req.query)
+
+    
+        
+
     }
+ 
     // let path = __dirname 
     // path = path.replace('router','VidUploads')
 
@@ -130,7 +140,7 @@ router.get('/result',async(req,res)=>{
  
     // const image = readImage(ImageName)
     // const output =  anything(image)
-
+   return res.redirect('/')
      
 })
 module.exports = router;

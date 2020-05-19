@@ -16,7 +16,7 @@ const Detect =async(VideoName)=>{
             }
             pred.forEach(element => {
                 obj.classes.push(element.class)
-                obj.bboxes.push(...element.bbox)
+                obj.bboxes.push(element.bbox)
             });
             predication.push(obj)
         }

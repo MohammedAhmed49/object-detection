@@ -3,13 +3,30 @@ const model = require('./objectDetection').model
 const readImage = require('./ReadImage').readImage
 const Detect =async(VideoName)=>{
     let counter = 1
-    let predication = []
+    let Tensors = []
     while (true){
         let path = VideoName+`/${counter}.jpg`
         if (fs.existsSync(path)){
             const image = readImage(path)
-            const pred = await model(image)
-            let obj = {
+            Tensors.push(image)
+            console.log(counter)
+            // const pred = await model(image)
+           
+        }
+        else{
+            break;
+        }
+        counter++;
+    }
+    let prediction = await model(Tensors)
+    while(prediction===0){
+        console.log("model Failed to load....")
+        console.log("please wait for reload attempt...")
+        prediction = await model(Tensors)
+    }
+    let predictions = []
+    for (pred of prediction){
+         let obj = {
                 frame : counter,
                 classes : [],
                 bboxes:[]
@@ -18,14 +35,9 @@ const Detect =async(VideoName)=>{
                 obj.classes.push(element.class)
                 obj.bboxes.push(element.bbox)
             });
-            predication.push(obj)
-        }
-        else{
-            break;
-        }
-        counter++;
+            predictions.push(obj)
     }
-    return predication
+    return predictions
 }   
 
 module.exports = Detect

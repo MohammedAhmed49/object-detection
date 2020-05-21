@@ -24,9 +24,10 @@ const EF =async(path,id)=>{
     let ID = false
     let values = []
     let VL = await GetVideoLength(path)
+    console.log("video length : %d sec " , VL)
     VL = Math.floor(VL) * 1000
-    console.log()
-     for (let i = 1000 ; i <= VL ; i += 1000){
+   
+     for (let i = 1000 ; i <= 50 * 1000 ; i += 1000){
          values.push(i)
      }
      id = id.toString()

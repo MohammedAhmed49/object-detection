@@ -47,9 +47,11 @@ router.post('/',VideoUpload,async(req,res)=>{
     DataBase.create(obj).then((doc)=>{
         console.log(doc)
         if (imageExist){
+            console.log("image exists and rendering to animation")
             return res.render('animation',{query:doc._id.toString(),image:true})
         }
         else {
+            console.log("image Doesn't exists and rendering to animation")
             return res.render('animation',{query:doc._id.toString(),image:false})
         }
    
@@ -78,10 +80,16 @@ router.get('/result',async(req,res)=>{
                         path = path + '/'+doc.ImageName
                         
                         const image = readImage(path)
-                        const prediction = await model(image)
+                        let input = [image]
+                        let prediction = await model(input)
+                        while(prediction===0){
+                            console.log("model Failed to load....")
+                            console.log("please wait for reload attempt...")
+                            prediction = await model(input)
+                        }
                         console.log("prediction : " ,prediction)
                         let objects = []
-                        prediction.forEach(Element =>{
+                        prediction[0].forEach(Element =>{
                             objects.push(Element.class)
                         })
                         console.log(objects)
@@ -91,23 +99,27 @@ router.get('/result',async(req,res)=>{
                         const end = Date.now()
                         console.log("Time taken to extract Frames : %d ms",end-start)
                         
-                        return res.send({"ready":0})
-                        // if (FramesExtracted){
-                        //     path = __dirname
-                        //     path = path.replace('router','Frames')
-                        //     path = path + '/'+req.query.id.toString()
-                        //     const predictions = await Detect(path) 
-                        //     console.log(predictions)
-                        //     const newPredictions = FilterPredictions(predictions,objects)
-                        //     console.log(newPredictions)
-                        //     
-                        // }
                        
-                        //console.log("Extracted frames",FramesExtracted)
-                }
+                        if (FramesExtracted){
+                            path = __dirname
+                            path = path.replace('router','Frames')
+                            path = path + '/'+req.query.id.toString()
+                            const predictions = await Detect(path) 
+                            console.log(predictions)
+                            const newPredictions = FilterPredictions(predictions,objects)
+                            console.log(newPredictions)
+                            
+                        }
+                       
+                        // console.log("Extracted frames",FramesExtracted)
+                        console.log("i am here sending results")
+                        res.send({ready:0})    
+                }   
                
             }
+            
         })  
+        
 
     
 

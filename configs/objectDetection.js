@@ -1,6 +1,5 @@
 const coco = require('@tensorflow-models/coco-ssd')
 const tf = require('@tensorflow/tfjs')
-require('@tensorflow/tfjs-node')
 
 // const loadModel = async(path)=>{
 //     const model =  new coco.ObjectDetection()
@@ -14,15 +13,26 @@ require('@tensorflow/tfjs-node')
 //     const detection = await cocoSSD.detect(input)
 //     console.log(detection)
 // }
-const anything = async (input)=>{
-    let pred = {}
-    await coco.load().then((result)=>{
-        const model = result 
-        return model.detect(input)
-    }).then((predictions)=>{
-        //console.log(predictions)
-        pred = predictions
+const anything = async (inputs)=>{
+    return new Promise (async(resolve , reject)=>{
+        await coco.load().then(async(result)=>{
+            const model = result
+            let predictions = []
+            for (input of inputs){
+                try {
+                    let output =  await model.detect(input)
+                    predictions.push(output)
+                }catch(err){
+                    reject(err)
+                }
+            }
+           resolve(predictions)
+        }).catch((err)=>{
+            console.log(err)
+            resolve(0)
+        })
     })
-    return pred
+
+   
 }
 module.exports ={ model : anything}

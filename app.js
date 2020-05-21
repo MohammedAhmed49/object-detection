@@ -2,6 +2,8 @@ const express = require('express');
 const router = require('./router/router')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
+require('@tensorflow/tfjs-node')
+
 const app = express();
 
 

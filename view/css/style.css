@@ -1,0 +1,180 @@
+@font-face {
+  font-family: 'Helvetica Neue LT Std';
+  src: url('../fonts/HelveticaNeueLTStd-Roman.eot');
+  src: url('../fonts/HelveticaNeueLTStd-Roman.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/HelveticaNeueLTStd-Roman.woff2') format('woff2'),
+      url('../fonts/HelveticaNeueLTStd-Roman.woff') format('woff'),
+      url('../fonts/HelveticaNeueLTStd-Roman.ttf') format('truetype'),
+      url('../fonts/HelveticaNeueLTStd-Roman.svg#HelveticaNeueLTStd-Roman') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Raleway';
+  src: url('../fonts/Raleway-Regular.eot');
+  src: url('../fonts/Raleway-Regular.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/Raleway-Regular.woff2') format('woff2'),
+      url('../fonts/Raleway-Regular.woff') format('woff'),
+      url('../fonts/Raleway-Regular.ttf') format('truetype'),
+      url('../fonts/Raleway-Regular.svg#Raleway-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('../fonts/Raleway-Bold.eot');
+  src: url('../fonts/Raleway-Bold.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/Raleway-Bold.woff2') format('woff2'),
+      url('../fonts/Raleway-Bold.woff') format('woff'),
+      url('../fonts/Raleway-Bold.ttf') format('truetype'),
+      url('../fonts/Raleway-Bold.svg#Raleway-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('../fonts/Raleway-SemiBold.eot');
+  src: url('../fonts/Raleway-SemiBold.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/Raleway-SemiBold.woff2') format('woff2'),
+      url('../fonts/Raleway-SemiBold.woff') format('woff'),
+      url('../fonts/Raleway-SemiBold.ttf') format('truetype'),
+      url('../fonts/Raleway-SemiBold.svg#Raleway-SemiBold') format('svg');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('../fonts/Raleway-Medium.eot');
+  src: url('../fonts/Raleway-Medium.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/Raleway-Medium.woff2') format('woff2'),
+      url('../fonts/Raleway-Medium.woff') format('woff'),
+      url('../fonts/Raleway-Medium.ttf') format('truetype'),
+      url('../fonts/Raleway-Medium.svg#Raleway-Medium') format('svg');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('../fonts/Raleway-Light.eot');
+  src: url('../fonts/Raleway-Light.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/Raleway-Light.woff2') format('woff2'),
+      url('../fonts/Raleway-Light.woff') format('woff'),
+      url('../fonts/Raleway-Light.ttf') format('truetype'),
+      url('../fonts/Raleway-Light.svg#Raleway-Light') format('svg');
+  font-weight: 300;
+  font-style: normal;
+}
+
+*:focus{
+  outline: none !important;
+}
+
+body{
+  font-family: 'Raleway';
+  overflow-x: hidden;
+  background: url('../images/home-bg.jpg') no-repeat center center;
+  background-size: cover;
+  height: 100vh;
+  color: #fff;
+}
+
+section{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.custom-select{
+  width: 200px;
+}
+
+[type="file"] {
+  height: 0;
+  overflow: hidden;
+  width: 0;
+}
+
+[type="file"] + label {
+  background: #fff;
+  border: none;
+  border-radius: 5px;
+  color: #0f366e;
+  cursor: pointer;
+  display: inline-block;
+  font-size: inherit;
+  font-weight: 600;
+  margin: 1rem auto;
+  outline: none;
+  padding: 1rem 50px;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  vertical-align: middle;
+}
+[type="file"] + label:hover {
+  background-color: #0f366e;
+  color: #fff;
+}
+.next-step{
+  opacity: 0;
+}
+.next-step span{
+  cursor: pointer;
+}
+.next-step i{
+  font-size: 15px;
+  position: relative;
+  top: 2px;
+  left: 0;
+  transition: all 0.35s ease-in-out;
+}
+.next-step span:hover i{
+  left: 5px;
+}
+input[type="submit"]{
+  background: #fff;
+  border: none;
+  border-radius: 5px;
+  color: #0f366e;
+  cursor: pointer;
+  display: inline-block;
+  font-size: inherit;
+  font-weight: 600;
+  margin: 1rem auto;
+  outline: none;
+  padding: 1rem 50px;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  vertical-align: middle;
+  width: 100%;
+}
+input[type="submit"]:hover {
+  background-color: #0f366e;
+  color: #fff;
+}
+.intro .intro-txt{
+  font-weight: 100;
+  opacity: 0;
+  font-size: 10px;
+  transition-timing-function: ease-in-out;
+}
+.first-step{
+  opacity: 0;
+  transition-timing-function: ease-in-out;
+}
+.second-step{
+  display: none;
+  transition-timing-function: ease-in-out;
+}
+.second-step .next-step span i{
+  top: 0;
+}
+.second-step .next-step span:hover i{
+  left: -5px;
+}

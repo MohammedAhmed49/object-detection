@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="description" content="">
+	<meta name="theme-color" content="#ffffff">
+	<title>Object Detection</title>
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="home-page">
+	<header class="home-header">
+
+	</header>
+	
+	<main class="home-main">
+		<section class="intro">
+			<h2 class="intro-txt">Welcome to our graduation project</h2>
+		</section>
+		<form method="POST" action="/" enctype="multipart/form-data">
+			<section class="first-step text-center">
+				<h2>First, please upload the video</h2>
+				<input type="file" id="video" class="inputfile" data-multiple-caption="{count} files selected" accept=".mp4, .avi, .flv, .wmv" name="VideoUp"/>
+				<label for="video" />Upload video</label>
+				<div class="next-step text-right">
+					<span>Next step <i class="fa fa-chevron-right"></i></span>
+				</div>
+			</section>
+
+			<section class="second-step text-center">
+				<h2>Please choose the object you want to detect from the list, if not found in the list please upload an image of the object</h2>
+				<div class="list mt-3">
+					<select name="objects" id="objects" class="custom-select">
+						<option disabled selected>Select an object</option>
+						<option value="car">Car</option>
+						<option value="person">Person</option>
+						<option value="tree">Tree</option>
+					</select>
+				</div>
+				<p class="my-2">or</p>
+				<input type="file" id="image" class="inputfile" data-multiple-caption="{count} files selected" accept=".jpg, .jpeg, .png" name="imageUp" />
+				<label for="image" class="mt-0"/>Upload image</label>
+				<div class="next-step text-left">
+					<input type="submit" value="Start detection">
+					<span><i class="fa fa-chevron-left"></i> Go back</span>
+				</div>
+			</section>
+		</form>
+	</main>
+	
+	<footer>
+
+	</footer>
+	<!-- INITIALIZE JS -->
+	<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="js/popper.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="js/wow.js"></script>
+	<script type="text/javascript" src="js/scripts.js"></script>
+
+</body>
+
+</html>

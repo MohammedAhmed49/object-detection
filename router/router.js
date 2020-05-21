@@ -2,7 +2,7 @@ const express = require('express');
 const VideoUpload = require('../configs/Uploads')
 const DataBase = require('../models/Database')
 const model = require('../configs/objectDetection').model
-const {extractFrames,VideoLen} = require('../configs/extractFrames')
+const {extractFrames}= require('../configs/extractFrames')
 const {readImage,readVideo}  = require('../configs/ReadImage')
 const Detect = require('../configs/DetectObjectsInVideo')
 const FilterPredictions = require('../functions/FilterPredictions')
@@ -47,35 +47,15 @@ router.post('/',VideoUpload,async(req,res)=>{
     DataBase.create(obj).then((doc)=>{
         console.log(doc)
         if (imageExist){
-            return res.redirect(url.format({
-                pathname:'/result',
-                query:{
-                    id: doc._id.toString(),
-                    image : true
-                }
-                
-            }))
+            return res.render('animation',{query:doc._id.toString(),image:true})
         }
         else {
-            return res.redirect(url.format({
-                pathname:'/result',
-                query:{
-                    id: doc._id.toString(),
-                    image : false
-                }
-                
-            }))
+            return res.render('animation',{query:doc._id.toString(),image:false})
         }
    
     }).catch((err)=>{
         console.log(err)
-        return res.redirect(url.format({
-            pathname:'/result',
-            query:{
-                id: 0
-            }
-    
-        }))
+        return res.redirect('/')
     })
     
    
@@ -89,8 +69,7 @@ router.get('/result',async(req,res)=>{
         return res.redirect('/')
     }
     else {
-        res.render('animation')
-        DataBase.findById(req.query.id , async(err,doc)=>{
+       await DataBase.findById(req.query.id , async(err,doc)=>{
             if (!err){
                 console.log("Document " ,doc)
                 if (req.query.image){
@@ -107,40 +86,34 @@ router.get('/result',async(req,res)=>{
                         })
                         console.log(objects)
                         path = path.replace(doc.ImageName , doc.VideoName)
-
+                        const start = Date.now()
                         const FramesExtracted = await extractFrames(path,req.query.id)
-  
-                        if (FramesExtracted){
-                            path = __dirname
-                            path = path.replace('router','Frames')
-                            path = path + '/'+req.query.id.toString()
-                            const predictions = await Detect(path) 
-                            console.log(predictions)
-                            const newPredictions = FilterPredictions(predictions,objects)
-                            console.log(newPredictions)
-                           
-                        }
+                        const end = Date.now()
+                        console.log("Time take to extract Frames : %d ms",end-start)
+                        
+                        return res.send({"ready":0})
+                        // if (FramesExtracted){
+                        //     path = __dirname
+                        //     path = path.replace('router','Frames')
+                        //     path = path + '/'+req.query.id.toString()
+                        //     const predictions = await Detect(path) 
+                        //     console.log(predictions)
+                        //     const newPredictions = FilterPredictions(predictions,objects)
+                        //     console.log(newPredictions)
+                        //     
+                        // }
                        
                         //console.log("Extracted frames",FramesExtracted)
                 }
                
             }
-        })
+        })  
 
     
-        
 
     }
  
-    // let path = __dirname 
-    // path = path.replace('router','VidUploads')
-
-    // const ImageName = path + '/imageUp-1589491328827.jpg'
-    // // const VideoName = path + '/VideoUp-1589490877429.mp4'
- 
-    // const image = readImage(ImageName)
-    // const output =  anything(image)
-   return res.redirect('/')
      
 })
+
 module.exports = router;

@@ -89,7 +89,7 @@ router.get('/result',async(req,res)=>{
                         const start = Date.now()
                         const FramesExtracted = await extractFrames(path,req.query.id)
                         const end = Date.now()
-                        console.log("Time take to extract Frames : %d ms",end-start)
+                        console.log("Time taken to extract Frames : %d ms",end-start)
                         
                         return res.send({"ready":0})
                         // if (FramesExtracted){

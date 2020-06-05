@@ -5,11 +5,24 @@ ffmpeg.setFfmpegPath(ffmpegPath);
 const extractFrames = require('ffmpeg-extract-frames')
 
 const GetVideoLength = async (path)=>{
-
+    
      return new Promise((resolve , reject)=>{
         ffmpeg.ffprobe(path,(err,data)=>{
             if (!err){
-                resolve(data.format.duration)
+                let i = 0
+                while(true){
+                    
+                    if(data.streams[i].width){
+                        break;
+                    }
+                    i++
+                }
+                console.log(data.streams[i].width
+                    ,data.streams[i].height)
+
+                resolve({width:data.streams[i].width
+                    ,height:data.streams[i].height})
+
             }
             else {
                 reject(err)
@@ -38,7 +51,7 @@ const EF =async(path,id)=>{
     console.log("Frame Extraction Started")
     await extractFrames({
         input:path,
-        output:`./Frames/${id.toString()}/%i.jpg`,
+        output:`./Frames/${id.toString()}/%i.bmp`,
         offsets:[...values]
      }).then(()=>{
         
@@ -51,4 +64,4 @@ const EF =async(path,id)=>{
     return ID
 }
 
-module.exports = {extractFrames:EF}
+module.exports = {extractFrames:EF , GetVideoLength:GetVideoLength}

@@ -22,13 +22,18 @@
 	
 	<main class="home-main">
 		<section class="intro">
-			<h2 class="intro-txt">Welcome to our graduation project</h2>
+			<h2 class="intro-txt">Welcome to our graduation project new index</h2>
 		</section>
 		<form method="POST" action="/" enctype="multipart/form-data">
 			<section class="first-step text-center">
 				<h2>First, please upload the video</h2>
 				<input type="file" id="video" class="inputfile" data-multiple-caption="{count} files selected" accept=".mp4, .avi, .flv, .wmv" name="VideoUp"/>
 				<label for="video" />Upload video</label>
+				
+				<div>
+					<p>You can choose the starting second in the video (default is 1)</p>
+					<input type="number" id="seconds" class="form-control" value="1"/>
+				</div>
 				<div class="next-step text-right">
 					<span>Next step <i class="fa fa-chevron-right"></i></span>
 				</div>
@@ -37,15 +42,32 @@
 			<section class="second-step text-center">
 				<h2>Please choose the object you want to detect from the list, if not found in the list please upload an image of the object</h2>
 				<div class="list mt-3">
-					<select name="objects" id="objects" class="custom-select">
+					<p>note: you can choose more than one object by click ctr + click on object*</p>
+					<select name="objects" id="objects" class="custom-select" multiple>
 						<option disabled selected>Select an object</option>
-						<option value="car">Car</option>
-						<option value="person">Person</option>
-						<option value="tree">Tree</option>
+						<option value="person">person</option>
+						<option value="bicycle">bicycle</option>
+						<option value="car">car</option>
+						<option value="motorcycle">motorcycle</option>
+						<option value="airplane">airplane</option>
+						<option value="bus">bus</option>
+						<option value="train">train</option>
+						<option value="truck">truck</option>
+						<option value="boat">boat</option>
+						<option value="traffic light">traffic light</option>
+						<option value="fire hydrant">fire hydrant</option>
+						<option value="stop sign">stop sign</option>
+						<option value="parking meter">parking meter</option>
+						<option value="bench">bench</option>
+						<option value="bird">bird</option>
+						<option value="cat">cat</option>
+						<option value="dog">dog</option>
+						<option value="horse">horse</option>
+						<option value="sheep">sheep</option>
 					</select>
 				</div>
 				<p class="my-2">or</p>
-				<input type="file" id="image" class="inputfile" data-multiple-caption="{count} files selected" accept=".jpg, .jpeg, .png" name="imageUp" />
+				<input type="file" id="image" class="inputfile" data-multiple-caption="{count} files selected" accept=".jpg, .jpeg, .png" name="imageUp" />				
 				<label for="image" class="mt-0"/>Upload image</label>
 				<div class="next-step text-left">
 					<input type="submit" value="Start detection">

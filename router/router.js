@@ -2,20 +2,20 @@ const express = require('express');
 const VideoUpload = require('../configs/Uploads')
 const DataBase = require('../models/Database')
 const model = require('../configs/objectDetection').model
-const {extractFrames}= require('../configs/extractFrames')
+const {extractFrames,GetVideoLength}= require('../configs/extractFrames')
 const {readImage,readVideo}  = require('../configs/ReadImage')
 const Detect = require('../configs/DetectObjectsInVideo')
 const FilterPredictions = require('../functions/FilterPredictions')
 const url = require('url')
 const router = express();
-
 router.set('views')
 router.set('view engine', 'ejs');
 
 router.get('/',(req,res)=>{
 
     let path = __dirname; 
-    path = path.replace('router','views/index.html')
+    path = path.replace('router','views/updatedIndex.html')
+    
     res.sendFile(path)
  
 })
@@ -71,56 +71,58 @@ router.get('/result',async(req,res)=>{
         return res.redirect('/')
     }
     else {
-       await DataBase.findById(req.query.id , async(err,doc)=>{
-            if (!err){
-                console.log("Document " ,doc)
-                if (req.query.image){
-                        let path = __dirname 
-                        path = path.replace('router','VidUploads')
-                        path = path + '/'+doc.ImageName
-                        
-                        const image = readImage(path)
-                        let input = [image]
-                        let prediction = await model(input)
-                        while(prediction===0){
-                            console.log("model Failed to load....")
-                            console.log("please wait for reload attempt...")
-                            prediction = await model(input)
-                        }
-                        console.log("prediction : " ,prediction)
-                        let objects = []
-                        prediction[0].forEach(Element =>{
-                            objects.push(Element.class)
-                        })
-                        console.log(objects)
-                        path = path.replace(doc.ImageName , doc.VideoName)
-                        const start = Date.now()
-                        const FramesExtracted = await extractFrames(path,req.query.id)
-                        const end = Date.now()
-                        console.log("Time taken to extract Frames : %d ms",end-start)
-                        
-                       
-                        if (FramesExtracted){
-                            path = __dirname
-                            path = path.replace('router','Frames')
-                            path = path + '/'+req.query.id.toString()
-                            const predictions = await Detect(path) 
-                            console.log(predictions)
-                            const newPredictions = FilterPredictions(predictions,objects)
-                            console.log(newPredictions)
-                            
-                        }
-                       
-                        // console.log("Extracted frames",FramesExtracted)
-                        console.log("i am here sending results")
-                        res.send({ready:0})    
-                }   
-               
+        try {
+            const doc = await DataBase.findById(req.query.id).exec()
+            if (doc == null){
+               return res.redirect('/')   
             }
-            
-        })  
-        
+            else {
+                let objects = []
 
+                if (req.query.image){
+                    let path = __dirname 
+                    path = path.replace('router','VidUploads')
+                    path = path + '/'+doc.ImageName
+                    
+                    const image = readImage(path)
+                    let input = [image]
+                    let prediction = await model(input)
+                    while(prediction===0){
+                        console.log("model Failed to load....")
+                        console.log("please wait for reload attempt...")
+                        prediction = await model(input)
+                    }
+                   // console.log("prediction : " ,prediction)
+                    
+                    prediction[0].forEach(Element =>{
+                        objects.push(Element.class)
+                    })
+                    console.log(objects)
+
+
+                
+            
+                   
+            }
+            else {
+                objects = doc.objects
+                console.log(objects)
+            }   
+            let  videoPath = __dirname 
+            videoPath = videoPath.replace('router','VidUploads')
+            videoPath = videoPath + '/'+doc.VideoName
+            
+            const {width,height} = await GetVideoLength(videoPath)
+            let frames =await readVideo(videoPath,width,height)
+            console.log("frames length", frames.length)
+            console.log("i am here sending results")
+            res.send({"ready":"0"})    
+            }
+        }catch(err){
+            console.log(err)
+           return res.redirect('/')
+        }
+        
     
 
     }

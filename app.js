@@ -16,8 +16,8 @@ mongoose.connect('mongodb://localhost:27017/GP', {useNewUrlParser: true, useUnif
 });
 
 app.use(express.static(__dirname+'/views'))
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({extended:false}));
 app.use(router)
 
 app.listen(3000 , ()=> {

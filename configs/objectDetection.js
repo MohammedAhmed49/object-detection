@@ -23,6 +23,7 @@ const anything = async (inputs)=>{
                     let output =  await model.detect(input)
                     predictions.push(output)
                 }catch(err){
+                    console.log("detection error : ",err)
                     reject(err)
                 }
             }

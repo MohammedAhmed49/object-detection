@@ -25,6 +25,7 @@ const Detect =async(VideoName)=>{
         prediction = await model(Tensors)
     }
     let predictions = []
+    counter = 1
     for (pred of prediction){
          let obj = {
                 frame : counter,
@@ -36,6 +37,7 @@ const Detect =async(VideoName)=>{
                 obj.bboxes.push(element.bbox)
             });
             predictions.push(obj)
+            counter++ 
     }
     return predictions
 }   

@@ -1,0 +1,45 @@
+ffmpeg version git-2020-05-15-b18fd2b Copyright (c) 2000-2020 the FFmpeg developers
+  built with gcc 9.3.1 (GCC) 20200513
+  configuration: --enable-gpl --enable-version3 --enable-sdl2 --enable-fontconfig --enable-gnutls --enable-iconv --enable-libass --enable-libdav1d --enable-libbluray --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-libopus --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libsrt --enable-libtheora --enable-libtwolame --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libzimg --enable-lzma --enable-zlib --enable-gmp --enable-libvidstab --enable-libvmaf --enable-libvorbis --enable-libvo-amrwbenc --enable-libmysofa --enable-libspeex --enable-libxvid --enable-libaom --disable-w32threads --enable-libmfx --enable-ffnvcodec --enable-cuda-llvm --enable-cuvid --enable-d3d11va --enable-nvenc --enable-nvdec --enable-dxva2 --enable-avisynth --enable-libopenmpt --enable-amf
+  libavutil      56. 45.100 / 56. 45.100
+  libavcodec     58. 84.100 / 58. 84.100
+  libavformat    58. 43.100 / 58. 43.100
+  libavdevice    58.  9.103 / 58.  9.103
+  libavfilter     7. 81.100 /  7. 81.100
+  libswscale      5.  6.101 /  5.  6.101
+  libswresample   3.  6.100 /  3.  6.100
+  libpostproc    55.  6.100 / 55.  6.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\Users\Ahmed\Documents\GP\VidUploads/VideoUp-1591366913499.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 1
+    compatible_brands: mp41mp42isom
+    creation_time   : 2016-09-28T18:41:26.000000Z
+  Duration: 00:00:10.04, start: 0.000000, bitrate: 12026 kb/s
+    Stream #0:0(eng): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 2 kb/s (default)
+    Metadata:
+      creation_time   : 2016-09-28T18:41:26.000000Z
+      handler_name    : Core Media Audio
+    Stream #0:1(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1280x720 [SAR 1:1 DAR 16:9], 12020 kb/s, 25 fps, 25 tbr, 25 tbn, 50 tbc (default)
+    Metadata:
+      creation_time   : 2016-09-28T18:41:26.000000Z
+      handler_name    : Core Media Video
+Stream mapping:
+  Stream #0:1 -> #0:0 (h264 (native) -> mjpeg (native))
+Press [q] to stop, [?] for help
+[swscaler @ 0000025af8dcca80] deprecated pixel format used, make sure you did set range correctly
+Output #0, rawvideo, to 'pipe:1':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 1
+    compatible_brands: mp41mp42isom
+    encoder         : Lavf58.43.100
+    Stream #0:0(und): Video: mjpeg, yuvj420p(pc), 720x1280 [SAR 256:81 DAR 16:9], q=2-31, 200 kb/s, 25 fps, 25 tbn, 25 tbc (default)
+    Metadata:
+      creation_time   : 2016-09-28T18:41:26.000000Z
+      handler_name    : Core Media Video
+      encoder         : Lavc58.84.100 mjpeg
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/200000 buffer size: 0 vbv_delay: N/A
+frame=   76 fps=0.0 q=24.8 size=    1924kB time=00:00:03.04 bitrate=5184.5kbits/s speed=6.07x    frame=  153 fps=153 q=24.8 size=    4198kB time=00:00:06.12 bitrate=5618.9kbits/s speed=6.11x    frame=  245 fps=163 q=24.8 size=    6264kB time=00:00:09.80 bitrate=5236.6kbits/s speed=6.51x    frame=  251 fps=163 q=24.8 Lsize=    6396kB time=00:00:10.04 bitrate=5218.7kbits/s speed=6.52x    
+video:6396kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.000000%

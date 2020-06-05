@@ -12,6 +12,11 @@ const DB = new schema({
     ImageName:{
       type:String,
     },
+    skipRate:{
+      type:Number,
+      default:0,
+      required:true
+    },
     resultID:{
       type:String
     }

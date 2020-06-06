@@ -6,6 +6,7 @@ window.onload =async()=>{
     })
 
     console.log(request.status)
+    console.log(await request.json())
 //  const newUrl = url.format({
 //    pathname:"http://localhost:3000/result",
 //    id:id,

@@ -9,7 +9,7 @@ ffmpeg version git-2020-05-15-b18fd2b Copyright (c) 2000-2020 the FFmpeg develop
   libswscale      5.  6.101 /  5.  6.101
   libswresample   3.  6.100 /  3.  6.100
   libpostproc    55.  6.100 / 55.  6.100
-Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\Users\Ahmed\Documents\GP\VidUploads/VideoUp-1591440033145.mp4':
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\Users\Ahmed\Documents\GP\VidUploads/VideoUp-1591447137632.mp4':
   Metadata:
     major_brand     : mp42
     minor_version   : 1
@@ -27,7 +27,7 @@ Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\Users\Ahmed\Documents\GP\VidUploads/
 Stream mapping:
   Stream #0:1 -> #0:0 (h264 (native) -> mjpeg (native))
 Press [q] to stop, [?] for help
-[swscaler @ 000001b6a540ac00] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 00000280703ec7c0] deprecated pixel format used, make sure you did set range correctly
 Output #0, rawvideo, to 'pipe:1':
   Metadata:
     major_brand     : mp42
@@ -41,5 +41,5 @@ Output #0, rawvideo, to 'pipe:1':
       encoder         : Lavc58.84.100 mjpeg
     Side data:
       cpb: bitrate max/min/avg: 0/0/200000 buffer size: 0 vbv_delay: N/A
-frame=   87 fps=0.0 q=24.8 size=    2372kB time=00:00:03.48 bitrate=5584.2kbits/s speed=6.94x    frame=  177 fps=176 q=24.8 size=    4918kB time=00:00:07.08 bitrate=5690.7kbits/s speed=7.05x    frame=  251 fps=181 q=24.8 Lsize=    6577kB time=00:00:10.04 bitrate=5366.4kbits/s speed=7.24x    
+frame=   87 fps=0.0 q=24.8 size=    2372kB time=00:00:03.48 bitrate=5584.2kbits/s speed=6.92x    frame=  183 fps=182 q=24.8 size=    5056kB time=00:00:07.32 bitrate=5658.4kbits/s speed=7.28x    frame=  251 fps=189 q=24.8 Lsize=    6577kB time=00:00:10.04 bitrate=5366.4kbits/s speed=7.55x    
 video:6577kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.000000%

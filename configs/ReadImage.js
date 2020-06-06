@@ -63,11 +63,12 @@ const readVideo =async(path,width,height)=>{
     ffmpeg.stderr.pipe(logStream);
     
     let frames = []
-
+    let PushedCounter = 0 
     ffmpeg.stdout.pipe(new ExtractFrames("FFD8FF")).on('data', (data) => {
-        frames.push(data)
-        
-    
+        if (PushedCounter % 15 == 0){
+          frames.push(data)
+        }
+        PushedCounter++;
   })
     return new Promise((resolve)=>{
       ffmpeg.on('close', function (code) {

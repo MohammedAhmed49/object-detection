@@ -84,7 +84,11 @@ router.get('/result', async (req, res) => {
         } 
         if (doc.objects){
           doc.objects.forEach((ele)=>{
+            if (!objects.includes(ele)){
+
               objects.push(ele.toString())
+            }
+              
           })
           console.log(objects)
         }
@@ -96,9 +100,11 @@ router.get('/result', async (req, res) => {
         let frames = await readVideo(videoPath, width, height);
         console.log("frames length", frames.length);
         const predictions = await getPredications(model,frames)
-        console.log(predictions)
+        console.log(predictions[0])
         console.log("i am here sending results");
-        res.send({ ready: "0" });
+        const predictionsObj = FilterPredictions(predictions,objects)
+        console.log(predictionsObj)
+        res.send(predictionsObj);
       }
     } catch (err) {
       console.log(err);

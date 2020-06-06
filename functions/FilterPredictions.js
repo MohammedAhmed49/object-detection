@@ -1,28 +1,21 @@
 const FilterPredictions = (predictions , Objects)=>{
-        let newPredictions = []
-        const listOfObjects = [... new Set(Objects)]
-        
-        for (let i = 0 ; i < predictions.length ; i++){
-            let obj = {
-                frame:predictions[i].frame,
-                classes:[],
-                bboxes:[]
+    let sec = 0 
+    let predictionsObject = {}
+    for (let i = 0 ; i < predictions.length ; i++){
+ 
+        let exists = false
+        predictions[i].forEach(element => {
+            if (Objects.includes(element.class)){
+                exists = true
             }
-                for (let j = 0 ; j < predictions[i].classes.length ; j++){
-                    
-                        if (listOfObjects.includes(predictions[i].classes[j])){
-                            obj.classes.push(predictions[i].classes[j])
-                            obj.bboxes.push(predictions[i].bboxes[j])
-                        }
-                    
-                }
-                if (obj.classes.length!==0){
-                    newPredictions.push(obj)
-                }
+        });
+        if (exists){
+            predictionsObject[sec] = predictions[i]
         }
-        
+        sec +=0.5
+    }
      
-   return newPredictions
+   return predictionsObject
 }
 
 module.exports = FilterPredictions

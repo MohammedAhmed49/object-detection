@@ -1,12 +1,12 @@
 const express = require("express");
 const VideoUpload = require("../configs/Uploads");
 const DataBase = require("../models/Database");
-const model = require("../configs/objectDetection").model;
+const {imagePrediction,getPredications} = require("../configs/objectDetection");
 const { extractFrames, GetVideoLength } = require("../configs/extractFrames");
 const { readImage, readVideo } = require("../configs/ReadImage");
-const Detect = require("../configs/DetectObjectsInVideo");
 const FilterPredictions = require("../functions/FilterPredictions");
-const url = require("url");
+const loadModel = require("../functions/loadModel")
+const fs = require('fs')
 const router = express();
 router.set("views");
 router.set("view engine", "ejs");
@@ -19,12 +19,19 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", VideoUpload, async (req, res) => {
-  
- console.log(req.body)
+  let objects=[]
+  if (req.body.objects){
+    if (typeof (req.body.objects)=="object"){
+      objects=[...req.body.objects]
+    }
+    else{
+      objects=[req.body.objects]
+    }
+  }
   const obj = {
     VideoName: req.files.VideoUp[0].filename,
     ImageName: req.files.imageUp ? req.files.imageUp[0].filename : null,
-    objects: req.body.objects ? [...req.body.objects] : null,
+    objects: objects,
     skipRate: Math.abs(req.body.skipRate)
   };
 
@@ -53,6 +60,11 @@ router.get('/result', async (req, res) => {
       if (doc == null) {
         return res.redirect("/");
       } else {
+        let model = await loadModel();
+        while (model==0){
+            model = await loadModel();
+        }
+        console.log("model loaded successfully")
         let objects = [];
 
         if (doc.ImageName) {
@@ -61,16 +73,11 @@ router.get('/result', async (req, res) => {
           path = path + "/" + doc.ImageName;
 
           const image = readImage(path);
-          let input = [image];
-          let prediction = await model(input);
-          while (prediction === 0) {
-            console.log("model Failed to load....");
-            console.log("please wait for reload attempt...");
-            prediction = await model(input);
-          }
+          const prediction = await imagePrediction(model,image)
+
           // console.log("prediction : " ,prediction)
 
-          prediction[0].forEach((Element) => {
+          prediction.forEach((Element) => {
             objects.push(Element.class);
           });
           console.log(objects);
@@ -88,6 +95,8 @@ router.get('/result', async (req, res) => {
         const { width, height } = await GetVideoLength(videoPath);
         let frames = await readVideo(videoPath, width, height);
         console.log("frames length", frames.length);
+        const predictions = await getPredications(model,frames)
+        console.log(predictions)
         console.log("i am here sending results");
         res.send({ ready: "0" });
       }

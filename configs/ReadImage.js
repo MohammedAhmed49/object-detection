@@ -28,7 +28,6 @@ class ExtractFrames extends Transform {
 
 const fs = require('fs')
 const tf = require('@tensorflow/tfjs-node')
-const jpg = require('jpeg-js')
 
 ImageName = '../VidUploads/imageUp-1589491328827.jpg'
 
@@ -47,7 +46,7 @@ const readImage = (path)=>{
 }
 
 const readVideo =async(path,width,height)=>{
-  const HW = height.toString()+'x'+width.toString()
+  const HW = width.toString()+'x'+height.toString()
   const logStream = fs.createWriteStream('./logFile.log');
   
   console.log(`height and width : ${HW}`)

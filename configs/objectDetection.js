@@ -1,39 +1,21 @@
-const coco = require('@tensorflow-models/coco-ssd')
-const tf = require('@tensorflow/tfjs')
+const tf = require('@tensorflow/tfjs-node')
 
-// const loadModel = async(path)=>{
-//     const model =  new coco.ObjectDetection()
-//    // model.path = `file://${path}`
-//     await model.load()
-//     return model
-// }
+const getPredications =async(model,frames)=>{
+    let predictions = []
+    for (let i = 0 ; i<frames.length ; i+=10){
+        try{
+            const image = tf.node.decodeImage(frames[i])
+            predictions.push(await model.detect(image))
+        }catch(err){
+            console.log(`there was an error at sec ${(i/30) + 1}`)
+        }
+    }
 
-// const FullModel = async(Cocopath,input)=>{
-//     const cocoSSD = await loadModel(Cocopath)
-//     const detection = await cocoSSD.detect(input)
-//     console.log(detection)
-// }
-const anything = async (inputs)=>{
-    return new Promise (async(resolve , reject)=>{
-        await coco.load().then(async(result)=>{
-            const model = result
-            let predictions = []
-            for (input of inputs){
-                try {
-                    let output =  await model.detect(input)
-                    predictions.push(output)
-                }catch(err){
-                    console.log("detection error : ",err)
-                    reject(err)
-                }
-            }
-           resolve(predictions)
-        }).catch((err)=>{
-            console.log(err)
-            resolve(0)
-        })
-    })
-
-   
+   return predictions
 }
-module.exports ={ model : anything}
+
+const imagePrediction =async(model , image)=>{
+
+           return ( await model.detect(image))    
+}
+module.exports ={imagePrediction:imagePrediction ,getPredications:getPredications}

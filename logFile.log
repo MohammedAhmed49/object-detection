@@ -9,37 +9,34 @@ ffmpeg version git-2020-05-15-b18fd2b Copyright (c) 2000-2020 the FFmpeg develop
   libswscale      5.  6.101 /  5.  6.101
   libswresample   3.  6.100 /  3.  6.100
   libpostproc    55.  6.100 / 55.  6.100
-Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\Users\Ahmed\Documents\GP\VidUploads/VideoUp-1591447137632.mp4':
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\Users\Ahmed\Documents\GP\views/VidUploads/VideoUp-1592597425457.mp4':
   Metadata:
-    major_brand     : mp42
-    minor_version   : 1
-    compatible_brands: mp41mp42isom
-    creation_time   : 2016-09-28T18:41:26.000000Z
-  Duration: 00:00:10.04, start: 0.000000, bitrate: 12026 kb/s
-    Stream #0:0(eng): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 2 kb/s (default)
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf58.43.100
+  Duration: 00:01:02.97, start: 0.000000, bitrate: 517 kb/s
+    Stream #0:0(und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(tv, bt709), 1280x720 [SAR 1:1 DAR 16:9], 381 kb/s, 30 fps, 30 tbr, 15360 tbn, 60 tbc (default)
     Metadata:
-      creation_time   : 2016-09-28T18:41:26.000000Z
-      handler_name    : Core Media Audio
-    Stream #0:1(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1280x720 [SAR 1:1 DAR 16:9], 12020 kb/s, 25 fps, 25 tbr, 25 tbn, 50 tbc (default)
+      handler_name    : ISO Media file produced by Google Inc. Created on: 01/29/2020.
+    Stream #0:1(eng): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 127 kb/s (default)
     Metadata:
-      creation_time   : 2016-09-28T18:41:26.000000Z
-      handler_name    : Core Media Video
+      handler_name    : ISO Media file produced by Google Inc. Created on: 01/29/2020.
 Stream mapping:
-  Stream #0:1 -> #0:0 (h264 (native) -> mjpeg (native))
+  Stream #0:0 -> #0:0 (h264 (native) -> mjpeg (native))
 Press [q] to stop, [?] for help
-[swscaler @ 00000280703ec7c0] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 000001d384a37600] deprecated pixel format used, make sure you did set range correctly
 Output #0, rawvideo, to 'pipe:1':
   Metadata:
-    major_brand     : mp42
-    minor_version   : 1
-    compatible_brands: mp41mp42isom
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
     encoder         : Lavf58.43.100
-    Stream #0:0(und): Video: mjpeg, yuvj420p(pc), 1280x720 [SAR 1:1 DAR 16:9], q=2-31, 200 kb/s, 25 fps, 25 tbn, 25 tbc (default)
+    Stream #0:0(und): Video: mjpeg, yuvj420p(pc), 1280x720 [SAR 1:1 DAR 16:9], q=2-31, 200 kb/s, 30 fps, 30 tbn, 30 tbc (default)
     Metadata:
-      creation_time   : 2016-09-28T18:41:26.000000Z
-      handler_name    : Core Media Video
+      handler_name    : ISO Media file produced by Google Inc. Created on: 01/29/2020.
       encoder         : Lavc58.84.100 mjpeg
     Side data:
       cpb: bitrate max/min/avg: 0/0/200000 buffer size: 0 vbv_delay: N/A
-frame=   87 fps=0.0 q=24.8 size=    2372kB time=00:00:03.48 bitrate=5584.2kbits/s speed=6.92x    frame=  183 fps=182 q=24.8 size=    5056kB time=00:00:07.32 bitrate=5658.4kbits/s speed=7.28x    frame=  251 fps=189 q=24.8 Lsize=    6577kB time=00:00:10.04 bitrate=5366.4kbits/s speed=7.55x    
-video:6577kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.000000%
+frame=   46 fps=0.0 q=24.8 size=    1006kB time=00:00:01.53 bitrate=5376.4kbits/s speed=3.06x    frame=  158 fps=158 q=24.8 size=    2797kB time=00:00:05.26 bitrate=4351.3kbits/s speed=5.25x    frame=  269 fps=178 q=24.8 size=    5141kB time=00:00:08.96 bitrate=4696.8kbits/s speed=5.95x    frame=  381 fps=189 q=24.8 size=    7264kB time=00:00:12.70 bitrate=4685.8kbits/s speed=6.32x    frame=  492 fps=195 q=24.8 size=    9020kB time=00:00:16.40 bitrate=4505.5kbits/s speed=6.52x    frame=  602 fps=199 q=24.8 size=   10927kB time=00:00:20.06 bitrate=4460.7kbits/s speed=6.65x    frame=  711 fps=202 q=24.8 size=   12827kB time=00:00:23.70 bitrate=4433.6kbits/s speed=6.73x    frame=  822 fps=204 q=24.8 size=   14706kB time=00:00:27.40 bitrate=4396.8kbits/s speed=6.81x    frame=  933 fps=206 q=24.8 size=   16750kB time=00:00:31.10 bitrate=4412.1kbits/s speed=6.87x    frame= 1035 fps=206 q=24.8 size=   19136kB time=00:00:34.50 bitrate=4543.8kbits/s speed=6.86x    frame= 1145 fps=207 q=24.8 size=   21337kB time=00:00:38.16 bitrate=4579.7kbits/s speed= 6.9x    frame= 1258 fps=209 q=24.8 size=   23389kB time=00:00:41.93 bitrate=4569.3kbits/s speed=6.95x    frame= 1368 fps=209 q=24.8 size=   25710kB time=00:00:45.60 bitrate=4618.7kbits/s speed=6.98x    frame= 1471 fps=209 q=24.8 size=   28194kB time=00:00:49.03 bitrate=4710.4kbits/s speed=6.97x    frame= 1579 fps=210 q=24.8 size=   30966kB time=00:00:52.63 bitrate=4819.6kbits/s speed=6.98x    frame= 1689 fps=210 q=24.8 size=   33467kB time=00:00:56.30 bitrate=4869.6kbits/s speed=   7x    frame= 1798 fps=211 q=24.8 size=   35629kB time=00:00:59.93 bitrate=4869.9kbits/s speed=7.02x    frame= 1801 fps=210 q=24.8 Lsize=   35692kB time=00:01:00.03 bitrate=4870.4kbits/s speed=7.02x    
+video:35692kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.000000%

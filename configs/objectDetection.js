@@ -1,6 +1,6 @@
 const tf = require('@tensorflow/tfjs-node')
 
-const getPredications =async(model,frames)=>{
+const getPredications =async(model,frames,)=>{
     let predictions = []
     let sec = 0
     for (let i = 0 ; i<frames.length ; i++){

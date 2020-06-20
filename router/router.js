@@ -5,7 +5,7 @@ const {
   imagePrediction,
   getPredications,
 } = require("../configs/objectDetection");
-const { GetVideoLength } = require("../configs/extractFrames");
+const { GetVideoData } = require("../configs/GetVideoMetaData");
 const { readImage, readVideo } = require("../configs/ReadImage");
 const FilterPredictions = require("../functions/FilterPredictions");
 const loadModel = require("../functions/loadModel");
@@ -96,14 +96,17 @@ router.get("/result", async (req, res) => {
         videoPath = videoPath.replace("router", "views/VidUploads");
         videoPath = videoPath + "/" + doc.VideoName;
 
-        const { width, height } = await GetVideoLength(videoPath);
+        const { width, height } = await GetVideoData(videoPath);
         console.log("reading video...")
         let frames = await readVideo(videoPath, width, height);
+        require('fs').writeFileSync('test.png',frames[10]);
         console.log("frames length", frames.length);
         console.log("getting predictions....")
         const predictions = await getPredications(model, frames);
-        console.log(predictions.map(D => {return D.class}));
+        // console.log(predictions);
+
         const predictionsObj = FilterPredictions(predictions, objects);
+        
         console.log("got predictions and sending object....");
         const FinalObject = {
           
@@ -111,7 +114,7 @@ router.get("/result", async (req, res) => {
             results:predictionsObj
           
         }
-        //console.log(` final object ${JSON.stringify(FinalObject)}`);
+        console.log(` final object ${JSON.stringify(FinalObject)}`);
         res.send(FinalObject);
       }
     } catch (err) {

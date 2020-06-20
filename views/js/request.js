@@ -12,10 +12,9 @@ window.onload =async()=>{
     // console.log(data);
     $('.result-section video source').attr('src', `VidUploads/${data.videoName}`);
     $('.result-section video')[0].load();
-    let seconds = null;
     const results = data.results
     for(let item in results){
-      const classes = results[item].map((obj)=>{ return obj.class});
+      const classes = results[item];
       let child = `<li><span>${item}</span>: ${classes.join(' ')}</li>`;
       $('.list-seconds ul').append(child);
 

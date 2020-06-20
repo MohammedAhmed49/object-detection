@@ -2,7 +2,7 @@ const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg');
 ffmpeg.setFfmpegPath(ffmpegPath);
 
-const GetVideoLength = async (path)=>{
+const GetVideoData = async (path)=>{
     
      return new Promise((resolve , reject)=>{
         ffmpeg.ffprobe(path,(err,data)=>{
@@ -32,4 +32,4 @@ const GetVideoLength = async (path)=>{
 
 
 
-module.exports = {GetVideoLength:GetVideoLength}
+module.exports = {GetVideoData:GetVideoData}

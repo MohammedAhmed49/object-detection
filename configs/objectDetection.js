@@ -6,7 +6,11 @@ const getPredications =async(model,frames,)=>{
     for (let i = 0 ; i<frames.length ; i++){
         try{
             const image = tf.node.decodeImage(frames[i])
-            predictions.push(await model.detect(image))
+            const FramePred = await model.detect(image)
+            
+            predictions.push(FramePred.map(E=> {
+                return E.class
+            }))
         }catch(err){
             console.log(`there was an error at sec ${i/2}`)
         }

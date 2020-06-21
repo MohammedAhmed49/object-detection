@@ -45,7 +45,7 @@ const readImage = (path)=>{
    
 }
 
-const readVideo =async(path,width,height)=>{
+const readVideo =async(path,width,height,skipRate)=>{
   const HW = width.toString()+'x'+height.toString()
   const logStream = fs.createWriteStream('./logFile.log');
   
@@ -61,16 +61,16 @@ const readVideo =async(path,width,height)=>{
      
     // ffmpeg.stderr.setEncoding('utf8'); 
     ffmpeg.stderr.pipe(logStream);
-    let skipRate =1;
     let frames = []
     let PushedCounter = 0 
     let sec = 0;
     ffmpeg.stdout.pipe(new ExtractFrames("FFD8FF")).on('data', (data) => {
         if (PushedCounter % 6 == 0 && sec % skipRate == 0 ){
           frames.push(data)
-          if (PushedCounter % 30 == 0){
-            sec++;
-          }
+ 
+        }
+        if (PushedCounter % 30 == 0){
+          sec++;
         }
         PushedCounter++;
   })

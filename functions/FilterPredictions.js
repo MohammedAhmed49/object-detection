@@ -1,4 +1,4 @@
-const FilterPredictions = (predictions , Objects)=>{
+const FilterPredictions = (predictions ,Objects,skipRate)=>{
     let sec = 0 
     let predictionsObject = {}
     for (let i = 0 ; i < predictions.length ; i+=5){
@@ -23,7 +23,7 @@ const FilterPredictions = (predictions , Objects)=>{
         if (exists){
             predictionsObject[sec] = tempListOfObject;
         }
-        sec++;
+        sec+=skipRate;
     }
      
    return predictionsObject

@@ -9,23 +9,23 @@ ffmpeg version git-2020-05-15-b18fd2b Copyright (c) 2000-2020 the FFmpeg develop
   libswscale      5.  6.101 /  5.  6.101
   libswresample   3.  6.100 /  3.  6.100
   libpostproc    55.  6.100 / 55.  6.100
-Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\Users\Ahmed\Documents\GP\views/VidUploads/VideoUp-1592690881596.mp4':
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\Users\Ahmed\Documents\GP\views/VidUploads/VideoUp-1592746040226.mp4':
   Metadata:
     major_brand     : isom
     minor_version   : 512
     compatible_brands: isomiso2avc1mp41
     encoder         : Lavf58.43.100
-  Duration: 00:01:02.97, start: 0.000000, bitrate: 517 kb/s
-    Stream #0:0(und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(tv, bt709), 1280x720 [SAR 1:1 DAR 16:9], 381 kb/s, 30 fps, 30 tbr, 15360 tbn, 60 tbc (default)
+  Duration: 00:00:10.03, start: 0.000000, bitrate: 604 kb/s
+    Stream #0:0(und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(tv, bt709), 1280x720 [SAR 1:1 DAR 16:9], 467 kb/s, 30 fps, 30 tbr, 15360 tbn, 60 tbc (default)
     Metadata:
       handler_name    : ISO Media file produced by Google Inc. Created on: 01/29/2020.
-    Stream #0:1(eng): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 127 kb/s (default)
+    Stream #0:1(eng): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 128 kb/s (default)
     Metadata:
       handler_name    : ISO Media file produced by Google Inc. Created on: 01/29/2020.
 Stream mapping:
   Stream #0:0 -> #0:0 (h264 (native) -> mjpeg (native))
 Press [q] to stop, [?] for help
-[swscaler @ 000002b3710e2480] deprecated pixel format used, make sure you did set range correctly
+[swscaler @ 000001f3773c2cc0] deprecated pixel format used, make sure you did set range correctly
 Output #0, rawvideo, to 'pipe:1':
   Metadata:
     major_brand     : isom
@@ -38,5 +38,5 @@ Output #0, rawvideo, to 'pipe:1':
       encoder         : Lavc58.84.100 mjpeg
     Side data:
       cpb: bitrate max/min/avg: 0/0/200000 buffer size: 0 vbv_delay: N/A
-frame=   88 fps=0.0 q=24.8 size=    1692kB time=00:00:02.93 bitrate=4724.5kbits/s speed=5.87x    frame=  192 fps=192 q=24.8 size=    3395kB time=00:00:06.40 bitrate=4346.0kbits/s speed=6.39x    frame=  292 fps=194 q=24.8 size=    5643kB time=00:00:09.73 bitrate=4749.2kbits/s speed=6.47x    frame=  397 fps=198 q=24.8 size=    7534kB time=00:00:13.23 bitrate=4663.6kbits/s speed= 6.6x    frame=  497 fps=198 q=24.8 size=    9096kB time=00:00:16.56 bitrate=4497.8kbits/s speed= 6.6x    frame=  605 fps=201 q=24.8 size=   10981kB time=00:00:20.16 bitrate=4460.6kbits/s speed=6.69x    frame=  710 fps=202 q=24.8 size=   12811kB time=00:00:23.66 bitrate=4434.4kbits/s speed=6.73x    frame=  808 fps=201 q=24.8 size=   14462kB time=00:00:26.93 bitrate=4398.8kbits/s speed= 6.7x    frame=  905 fps=200 q=24.8 size=   16119kB time=00:00:30.16 bitrate=4377.1kbits/s speed=6.67x    frame=  995 fps=198 q=24.8 size=   18198kB time=00:00:33.16 bitrate=4494.8kbits/s speed= 6.6x    frame= 1084 fps=196 q=24.8 size=   20219kB time=00:00:36.13 bitrate=4584.1kbits/s speed=6.54x    frame= 1170 fps=194 q=24.8 size=   21796kB time=00:00:39.00 bitrate=4578.2kbits/s speed=6.47x    frame= 1265 fps=194 q=24.8 size=   23536kB time=00:00:42.16 bitrate=4572.5kbits/s speed=6.46x    frame= 1360 fps=193 q=24.8 size=   25541kB time=00:00:45.33 bitrate=4615.4kbits/s speed=6.44x    frame= 1451 fps=192 q=24.8 size=   27687kB time=00:00:48.36 bitrate=4689.5kbits/s speed=6.42x    frame= 1541 fps=192 q=24.8 size=   29976kB time=00:00:51.36 bitrate=4780.5kbits/s speed=6.39x    frame= 1635 fps=191 q=24.8 size=   32356kB time=00:00:54.50 bitrate=4863.5kbits/s speed=6.38x    frame= 1735 fps=192 q=24.8 size=   34312kB time=00:00:57.83 bitrate=4860.3kbits/s speed=6.39x    frame= 1801 fps=192 q=24.8 Lsize=   35692kB time=00:01:00.03 bitrate=4870.4kbits/s speed=6.39x    
-video:35692kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.000000%
+frame=   96 fps=0.0 q=24.8 size=    2132kB time=00:00:03.20 bitrate=5459.0kbits/s speed=6.37x    frame=  199 fps=198 q=24.8 size=    3911kB time=00:00:06.63 bitrate=4829.5kbits/s speed=6.61x    frame=  301 fps=201 q=24.8 Lsize=    5737kB time=00:00:10.03 bitrate=4684.4kbits/s speed=6.71x    
+video:5737kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.000000%

@@ -98,14 +98,14 @@ router.get("/result", async (req, res) => {
 
         const { width, height } = await GetVideoData(videoPath);
         console.log("reading video...")
-        let frames = await readVideo(videoPath, width, height);
-        require('fs').writeFileSync('test.png',frames[10]);
+        let frames = await readVideo(videoPath, width, height,doc.skipRate);
+        
         console.log("frames length", frames.length);
         console.log("getting predictions....")
         const predictions = await getPredications(model, frames);
         // console.log(predictions);
 
-        const predictionsObj = FilterPredictions(predictions, objects);
+        const predictionsObj = FilterPredictions(predictions, objects,doc.skipRate);
         
         console.log("got predictions and sending object....");
         const FinalObject = {

@@ -16,6 +16,7 @@
 </head>
 
 <body class="home-page">
+	<img src="images/3.png" class="logo" />
 	<header class="home-header">
 
 	</header>
@@ -31,9 +32,23 @@
 				<label for="video" />Upload video</label>
 				
 				<div>
-					<p>seconds between each detection, 0 means no seconds will be skipped </p><br>
-					<p>note that the bigger this value the faster is detection espcially in long videos </p>
-					<input type="number" id="seconds" name="skipRate" class="form-control" value="1"/>
+					<p>Skip rate</p>
+					<!-- <p> </p><br>
+					<p></p> -->
+					<input type="number" id="seconds" name="skipRate" class="form-control" value="1" style="display: inline-block;     width: 60%;
+					margin: 5px auto;
+					position: relative;
+					left: 20px;"/>
+					<button type="button" id="example" style="    color: #fff;
+					background-color: #0f366e;
+					border-color: #0f366e;
+					border-radius: 50%;
+					width: 35px;
+					height: 35px;
+					position: relative;
+    left: 20px;" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="seconds between each detection, 0 means no seconds will be skipped. note that the bigger this value the faster is detection espcially in long videos">
+						?
+					</button>
 				</div>
 				<div class="next-step text-right">
 					<span>Next step <i class="fa fa-chevron-right"></i></span>
@@ -88,6 +103,7 @@
 	<script type="text/javascript" src="js/owl.carousel.min.js"></script>
 	<script type="text/javascript" src="js/wow.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
+	<script>$('#example').tooltip()</script>
 
 </body>
 

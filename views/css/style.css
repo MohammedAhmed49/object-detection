@@ -76,9 +76,9 @@
 body{
   font-family: 'Raleway';
   overflow-x: hidden;
-  background: url('../images/home-bg.jpg') no-repeat center center;
+  background: url('../images/background.png') no-repeat center bottom;
   background-size: cover;
-  height: 100vh;
+  min-height: 100vh;
   color: #fff;
 }
 
@@ -178,3 +178,34 @@ input[type="submit"]:hover {
 .second-step .next-step span:hover i{
   left: -5px;
 }
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 20px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 20px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 20px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+  }
+  .logo{
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      width: 75px;
+      z-index: 3;
+  }
